@@ -2,7 +2,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class CarService<T extends Car> {
+public class CarService<T extends Carro> {
     private CarRepository<T> repository;
 
     public CarService(CarRepository<T> repository) {
@@ -14,11 +14,11 @@ public class CarService<T extends Car> {
         List<T> carros = repository.listarTodos();
         if (crescente) {
             return carros.stream()
-                    .sorted(Comparator.comparing(Car::getPreco))
+                    .sorted(Comparator.comparing(Carro::getPreco))
                     .collect(Collectors.toList());
         } else {
             return carros.stream()
-                    .sorted(Comparator.comparing(Car::getPreco).reversed())
+                    .sorted(Comparator.comparing(Carro::getPreco).reversed())
                     .collect(Collectors.toList());
         }
     }
@@ -28,11 +28,11 @@ public class CarService<T extends Car> {
         List<T> carros = repository.listarTodos();
         if (crescente) {
             return carros.stream()
-                    .sorted(Comparator.comparing(Car::getAno))
+                    .sorted(Comparator.comparing(Carro::getAno))
                     .collect(Collectors.toList());
         } else {
             return carros.stream()
-                    .sorted(Comparator.comparing(Car::getAno).reversed())
+                    .sorted(Comparator.comparing(Carro::getAno).reversed())
                     .collect(Collectors.toList());
         }
     }
@@ -40,7 +40,7 @@ public class CarService<T extends Car> {
     // Calcular preço médio
     public double calcularPrecoMedio() {
         return repository.listarTodos().stream()
-                .mapToDouble(Car::getPreco)
+                .mapToDouble(Carro::getPreco)
                 .average()
                 .orElse(0.0);
     }
@@ -48,14 +48,14 @@ public class CarService<T extends Car> {
     // Encontrar carro mais caro
     public T encontrarMaisCaro() {
         return repository.listarTodos().stream()
-                .max(Comparator.comparing(Car::getPreco))
+                .max(Comparator.comparing(Carro::getPreco))
                 .orElse(null);
     }
 
     // Encontrar carro mais barato
     public T encontrarMaisBarato() {
         return repository.listarTodos().stream()
-                .min(Comparator.comparing(Car::getPreco))
+                .min(Comparator.comparing(Carro::getPreco))
                 .orElse(null);
     }
 
@@ -65,7 +65,7 @@ public class CarService<T extends Car> {
             double novoPreco = carro.getPreco() * (1 - percentual / 100);
             carro.setPreco(novoPreco);
         });
-        System.out.println("✓ Desconto de " + percentual + "% aplicado");
+        System.out.println(" Desconto de " + percentual + "% aplicado");
     }
 
     // Relatório de estatísticas

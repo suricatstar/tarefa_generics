@@ -1,19 +1,15 @@
-public class Car implements Comparable<Car> {
-    private String marca;
+public abstract class Carro implements Comparable<Carro> {
     private String modelo;
     private int ano;
     private double preco;
 
-    public Car(String marca, String modelo, int ano, double preco) {
-        this.marca = marca;
+    public Carro(String modelo, int ano, double preco) {
         this.modelo = modelo;
         this.ano = ano;
         this.preco = preco;
     }
 
-    public String getMarca() {
-        return marca;
-    }
+    public abstract String getMarca();
 
     public String getModelo() {
         return modelo;
@@ -32,14 +28,14 @@ public class Car implements Comparable<Car> {
     }
 
     @Override
-    public int compareTo(Car outro) {
+    public int compareTo(Carro outro) {
         return this.modelo.compareTo(outro.modelo);
     }
 
     @Override
     public String toString() {
         return String.format("%s %s (%d) - R$ %.2f",
-                marca, modelo, ano, preco);
+                getMarca(), modelo, ano, preco);
     }
 
     @Override
@@ -48,9 +44,9 @@ public class Car implements Comparable<Car> {
             return true;
         if (obj == null || getClass() != obj.getClass())
             return false;
-        Car car = (Car) obj;
-        return ano == car.ano &&
-                marca.equals(car.marca) &&
-                modelo.equals(car.modelo);
+        Carro carro = (Carro) obj;
+        return ano == carro.ano &&
+                getMarca().equals(carro.getMarca()) &&
+                modelo.equals(carro.modelo);
     }
 }

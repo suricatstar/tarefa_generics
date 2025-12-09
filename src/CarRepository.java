@@ -4,7 +4,7 @@ import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-public class CarRepository<T extends Car> {
+public class CarRepository<T extends Carro> {
     private List<T> carros;
 
     public CarRepository() {
@@ -14,20 +14,20 @@ public class CarRepository<T extends Car> {
     // Adicionar carro
     public void adicionar(T carro) {
         carros.add(carro);
-        System.out.println("✓ Carro adicionado: " + carro.getModelo());
+        System.out.println("Carro adicionado: " + carro.getMarca() + " " + carro.getModelo());
     }
 
     // Adicionar múltiplos carros
     public void adicionarTodos(List<? extends T> listaCarros) {
         carros.addAll(listaCarros);
-        System.out.println("✓ " + listaCarros.size() + " carros adicionados");
+        System.out.println(listaCarros.size() + " carros adicionados");
     }
 
     // Remover carro
     public boolean remover(T carro) {
         boolean removido = carros.remove(carro);
         if (removido) {
-            System.out.println("✓ Carro removido: " + carro.getModelo());
+            System.out.println("Carro removido: " + carro.getModelo());
         }
         return removido;
     }
@@ -78,7 +78,7 @@ public class CarRepository<T extends Car> {
     // Limpar repositório
     public void limpar() {
         carros.clear();
-        System.out.println("✓ Repositório limpo");
+        System.out.println("Repositório limpo");
     }
 
     // Verificar se está vazio
